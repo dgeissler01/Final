@@ -1,0 +1,313 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+    <title>Pizza Order App</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div class="header clearfix">
+        <!-- LOGO NEXT TO OR BEHIND COMPANY NAME -->
+        <h3 class="text-muted">UnderCutter Pizza</h3>
+      </div>
+      <div class="jumbotron">
+        <h1>Pizza at it's best!</h1>
+        <!-- PIZZA PARLOR DESCRIPTION / HEADLINE -->
+        <p class="lead">Golden brown crust. Melty cheese. Fresh sauce. Toppings galore! <br>
+        You know what to do...</p>
+      </div>
+
+      <!-- FORM ELEMENTS FOR PERSONAL INFO-->
+      <div class="row">
+        <div class="col-lg-6">
+          <h2>Please enter your information</h2>
+          <form class="needs-validation" novalidate id="user-info"> <!-- NOVALIDATE FOR CUSTOM JS VALIDATION ADDED -->
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" class="form-control form-control-sm" id="name" placeholder="Name">
+              <div id="name-valid" class="valid-feedback">
+                Looks good!
+              </div>
+              <div id="name-invalid" class="invalid-feedback">
+                Please enter your name.
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="address-type">Address Type</label>
+              <select class="form-control form-control-sm" id="address-type">
+                <option value="House">House</option>
+                <option value="Apartment">Apartment</option>
+                <option value="Business">Business</option>
+                <option value="Campus">Campus</option>
+                <option value="Dorm">Dorm</option>
+                <option value="Hotel">Hotel</option>
+                <option value="Other" id="other-select">Other</option>
+              </select>
+              <div id="address-type-valid" class="valid-feedback">
+                Looks good!
+              </div>
+              <div id="address-type-invalid" class="invalid-feedback">
+                Please select an address type.
+              </div>
+              <!-- PROGRAMATICALLY ADD OTHER INPUT IF OPTION IS SELECTED -->
+              <div id="toggle-other">            
+                <div class="form-group">
+                <label for="other">Other</label>
+                <input type="text" class="form-control form-control-sm" id="other" placeholder="Other Address Type">
+                <div id="address-other-valid" class="valid-feedback">
+                  Looks good!
+                </div>
+                <div id="address-other-invalid" class="invalid-feedback">
+                  Please enter other address type.
+                </div>
+              </div>
+            </div>
+            </div>
+            <div class="form-group">
+              <label for="address">Address</label>
+              <input type="text" class="form-control form-control-sm" id="address" placeholder="Address">
+              <div id="address-valid" class="valid-feedback">
+                Looks good!
+              </div>
+              <div id="address-invalid" class="invalid-feedback">
+                Please enter street address.
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="apt">Apt/Suite/Room (Optional)</label>
+              <input type="text" class="form-control form-control-sm" id="apt" placeholder="Apt/Suite/Room">
+            </div>
+            <div class="form-group">
+              <label for="city">City</label>
+              <input type="text" class="form-control form-control-sm" id="city" placeholder="City">
+              <div id="city-valid" class="valid-feedback">
+                Looks good!
+              </div>
+              <div id="city-invalid" class="invalid-feedback">
+                Please enter city name.
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="state">State</label>
+              <input type="text" class="form-control form-control-sm" id="state" placeholder="State">
+              <div id="state-valid" class="valid-feedback">
+                Looks good!
+              </div>
+              <div id="state-invalid" class="invalid-feedback">
+                Please enter state initials (ex: CA, AZ, TX).
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="zip">Zip Code</label>
+              <input type="text" class="form-control form-control-sm" id="zip" placeholder="Zip Code">
+              <div id="zip-valid" class="valid-feedback">
+                Looks good!
+              </div>
+              <div id="zip-invalid" class="invalid-feedback">
+                Please enter zip code (ex: 12345, 12345-6789).
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="tel" class="form-control form-control-sm" id="phone" placeholder="Phone">
+              <div id="phone-valid" class="valid-feedback">
+                Looks good!
+              </div>
+              <div id="phone-invalid" class="invalid-feedback">
+                Please enter phone number (ex: 123-456-7890).
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input type="text" class="form-control form-control-sm" id="email" placeholder="name@example.com">
+              <div id="email-valid" class="valid-feedback">
+                Looks good!
+              </div>
+              <div id="email-invalid" class="invalid-feedback">
+                Please enter email (ex: iam@goober.com).
+              </div>
+            </div>
+          </form>
+        </div>
+
+      <!-- FORM ELEMENTS FOR PIZZA ORDER INFO-->
+        <div class="col-lg-6">
+          <h2>Build your pizza!</h2>
+          <form id="pizza-order">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="crust" id="handtossed" value="handtossed">
+              <label class="form-check-label" for="handtossed">
+              Hand Tossed
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="crust" id="thin" value="thin">
+              <label class="form-check-label" for="thin">
+                Thin Crust
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="crust" id="newyork" value="newyork">
+              <label class="form-check-label" for="newyork">
+                New York Style
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="crust" id="gluten" value="gluten">
+              <label class="form-check-label" for="gluten">
+                Gluten Free
+              </label>
+            </div>
+            <!-- Add select for size and price programatically -->
+            <div id="handtossed-toggle">
+              <div class="form-group">
+                <label for="handtossed-size">What size?</label>
+                <select class="form-control" id="handtossed-size">
+                  <option value="">--Select Size--</option>
+                  <option value="9.99">Small ($9.99)</option>
+                  <option value="12.99">Medium ($12.99)</option>
+                  <option value="14.99">Large ($14.99)</option>
+                </select>
+              </div>
+            </div>
+            <div id="thin-toggle">
+              <div class="form-group">
+                <label for="thin-size">What size?</label>
+                <select class="form-control" id="thin-size">
+                  <option value="">--Select Size--</option>
+                  <option value="11.99">Medium ($11.99)</option>
+                  <option value="13.99">Large ($13.99)</option>
+                </select>
+              </div>
+            </div>
+            <div id="newyork-toggle">
+              <div class="form-group">
+                <label for="newyork-size">What size?</label>
+                <select class="form-control" id="newyork-size">
+                  <option value="">--Select Size--</option>
+                  <option value="16.99">Large ($16.99)</option>
+                  <option value="19.99">Extra Large ($19.99)</option>
+                </select>
+              </div>
+            </div>
+            <div id="gluten-toggle">
+              <div class="form-group">
+                <label for="gluten-size">What size?</label>
+                <select class="form-control" id="gluten-size">
+                  <option value="">--Select Size--</option>
+                  <option value="10.99">Small ($10.99)</option>
+                </select>
+              </div>
+            </div>
+            <!-- End size and price selects -->
+            <div class="form-group">
+              <label for="cheese">How much Cheese?</label>
+              <select class="form-control" id="cheese">
+                <option value="0">Light: no charge</option>
+                <option value="0" selected>Normal: no charge</option>
+                <option value="2.99">Extra: +$2.99</option>
+                <option value="3.99">Double: +$3.99</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="sauce">What kind of Sauce?</label>
+              <select class="form-control" id="sauce">
+                <option selected>Regular Tomato: no charge</option>
+                <option value="0.99">Hearty Tomato: +$.99</option>
+                <option value="1.99">BBQ Sauce: +$1.99</option>
+              </select>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="toppings" id="pepperoni" value="0.99">
+              <label class="form-check-label" for="pepperoni">
+              Pepperoni
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="toppings" id="sausage" value="0.99">
+              <label class="form-check-label" for="sausage">
+              Sausage
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="toppings" id="ham" value="0.99">
+              <label class="form-check-label" for="ham">
+              Ham
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="toppings" id="bacon" value="0.99">
+              <label class="form-check-label" for="bacon">
+              Bacon
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="toppings" id="salami" value="0.99">
+              <label class="form-check-label" for="salami">
+              Salami
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="toppings" id="peppers" value="0.99">
+              <label class="form-check-label" for="peppers">
+              Peppers
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="toppings" id="olives" value="0.99">
+              <label class="form-check-label" for="olives">
+              Olives
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="toppings" id="jalapenos" value="0.99">
+              <label class="form-check-label" for="jalapenos">
+              Jalapenos
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="toppings" id="mushrooms" value="0.99">
+              <label class="form-check-label" for="mushrooms">
+              Mushrooms
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="toppings" id="pineapple" value="0.99">
+              <label class="form-check-label" for="pineapple">
+              Pineapple
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" name="toppings" id="onion" value="0.99">
+              <label class="form-check-label" for="onion">
+              Onion
+              </label>
+            </div>
+            <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">Your Total</h5>
+                <p class="card-text" id="total"></p>
+                <a href="#" class="btn btn-primary">Place Order</a>
+              </div>
+            </div>
+          </form>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="js/script.js"></script>
+  </body>
+</html>
